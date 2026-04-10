@@ -221,11 +221,9 @@ input.invalid,select.invalid{border-color:#c0392b!important}
           <div class="grid-2">
             <div class="field">
               <label>Idea ID <span class="req">*</span></label>
-              <div class="hint">From AZWorks / Allianz Works &ndash; Idea Portal</div>
-              <select id="idea-id">
-                <option value="">Loading ideas&hellip;</option>
-              </select>
-              <div class="field-error" id="err-idea">Please select an idea</div>
+              <div class="hint">Enter the numeric ID from AZWorks / Allianz Works &ndash; Idea Portal</div>
+              <input type="text" id="idea-id" placeholder="e.g. 42" style="letter-spacing:0.03em">
+              <div class="field-error" id="err-idea">Please enter the Idea ID</div>
             </div>
             <div class="field">
               <label>Evaluation date</label>
@@ -249,7 +247,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
             </div>
           </div>
           <div class="nav-bar">
-            <div class="status-note"><div class="dot-live"></div>Connected to Allianz Works portal</div>
+            <div class="status-note" style="color:#bbb;font-size:11px">&#128196; Evaluation will be downloaded as CSV</div>
             <button class="btn btn-primary" onclick="goTo(2)">Next: Strategic Alignment &#8594;</button>
           </div>
         </div>
@@ -468,8 +466,7 @@ document.getElementById("entry-email").addEventListener("keydown", function(e) {
 
 // ── Data ──────────────────────────────────────────────────────────
 async function loadData() {
-  await Promise.all([loadIdeas(), loadEvalLog()]);
-  populateDropdown();
+  // CSV mode — no data to load
 }
 async function loadIdeas() {
   allIdeas = FALLBACK_IDEAS;
@@ -645,7 +642,7 @@ function validateStep(step) {
     else         { el.classList.remove("invalid"); err.classList.remove("show"); }
   }
   if (step === 1) {
-    check("idea-id",  "err-idea",     function(el){ return !!el.value; });
+    check("idea-id",  "err-idea",     function(el){ return !!el.value.trim(); });
     check("category", "err-category", function(el){ return !!el.value; });
   }
   if (step === 2) check("strategic-goal","err-goal",function(el){ return !!el.value; });
@@ -665,7 +662,7 @@ async function submitForm() {
   var now     = new Date().toISOString();
 
   var payload = {
-    idea_id:          document.getElementById("idea-id").value,
+    idea_id:          document.getElementById("idea-id").value.trim(),
     evaluator:        currentUser.info.label,
     evaluator_email:  currentUser.email,
     eval_date:        document.getElementById("eval-date").value,
