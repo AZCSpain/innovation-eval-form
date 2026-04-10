@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innovation & Automation Evaluation — Allianz</title>
-<script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
 <style>
 :root{
   --az-dark:#003781;--az-dblue:#122B54;--az-lblue:#006192;
@@ -418,70 +417,8 @@ var EVALUATOR_INFO = {
   "federico.calabrese@allianz.com": { label: "Federico Calabrese" }
 };
 
-// ── Graph API configuration ───────────────────────────────────────
-var GRAPH_CONFIG = {
-  siteId:   "33ef0074-a9ef-4747-bca8-74b67b97d258",
-  driveId:  "b!dADvM--pR0e8qHS2e5fSWJmufpQnAfZKkiSYo6Qrl7AnapYlzLNbQI3DJEle1ghb",
-  fileId:   "01BEK7GVD46VL43HDYBNGZUMQLU4U7QOJT",
-  table:    "EvaluationLog",
-  // Idea Portal — AZWorks AZ and HCL site
-  ideaListSiteId: "allianzms.sharepoint.com,89405e27-bc65-45d9-a3f5-f7e222f0aafe,f32d7250-5075-4802-8bb9-089bb866c0a6",
-  ideaListId:     "e4c5cb66-fb24-4933-b8a2-560f71f05d0d",
-  // Evaluation log — SharePoint List (no Premium license needed)
-  evalListId:     "6475c621-5866-47af-a662-5412dddac978"
-};
-
-// MSAL configuration — uses the current SharePoint session (no extra login)
-var msalConfig = {
-  auth: {
-    clientId: "de8bc8b5-d9f9-48b1-a8ad-b748da725064", // Graph Explorer app ID (works for SPO pages)
-    authority: "https://login.microsoftonline.com/6e06e42d-6925-47c6-b9e7-9581c7ca302a",
-    redirectUri: window.location.href.split("?")[0]
-  },
-  cache: { cacheLocation: "sessionStorage" }
-};
-var msalInstance = null;
-var graphToken   = null;
-
-async function getToken() {
-  if (graphToken) return graphToken;
-  if (!msalInstance) msalInstance = new msal.PublicClientApplication(msalConfig);
-  var scopes = ["https://graph.microsoft.com/Sites.ReadWrite.All",
-                "https://graph.microsoft.com/Files.ReadWrite.All"];
-  try {
-    var accounts = msalInstance.getAllAccounts();
-    var resp = accounts.length > 0
-      ? await msalInstance.acquireTokenSilent({ scopes: scopes, account: accounts[0] })
-      : await msalInstance.acquireTokenPopup({ scopes: scopes });
-    graphToken = resp.accessToken;
-    return graphToken;
-  } catch(e) {
-    var resp2 = await msalInstance.acquireTokenPopup({ scopes: scopes });
-    graphToken = resp2.accessToken;
-    return graphToken;
-  }
-}
-
-async function graphGet(path) {
-  var token = await getToken();
-  var r = await fetch("https://graph.microsoft.com/v1.0" + path, {
-    headers: { Authorization: "Bearer " + token }
-  });
-  if (!r.ok) throw new Error("Graph GET failed: " + r.status + " " + await r.text());
-  return r.json();
-}
-
-async function graphPost(path, body) {
-  var token = await getToken();
-  var r = await fetch("https://graph.microsoft.com/v1.0" + path, {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) throw new Error("Graph POST failed: " + r.status + " " + await r.text());
-  return r.json();
-}
-// ─────────────────────────────────────────────────────────────────
+// ── No external connections needed — CSV download mode ──────────────
+// Evaluations are downloaded as CSV and pasted into Excel manually
 
 var FALLBACK_IDEAS = [
   { id: "1", title: "AI-powered claims triage" },
@@ -535,41 +472,10 @@ async function loadData() {
   populateDropdown();
 }
 async function loadIdeas() {
-  // If idea list IDs are configured, load from SharePoint List
-  if (GRAPH_CONFIG.ideaListSiteId && GRAPH_CONFIG.ideaListId) {
-    try {
-      var resp = await graphGet("/sites/" + GRAPH_CONFIG.ideaListSiteId +
-        "/lists/" + GRAPH_CONFIG.ideaListId +
-        "/items?$expand=fields($select=ID,Title)&$top=500");
-      allIdeas = resp.value.map(function(item) {
-        return { id: String(item.fields.ID || item.id), title: item.fields.Title || "Idea " + item.id };
-      });
-      return;
-    } catch(e) { console.warn("Could not load ideas from list:", e.message); }
-  }
-  // Fallback to demo ideas
   allIdeas = FALLBACK_IDEAS;
 }
 async function loadEvalLog() {
-  try {
-    var resp = await graphGet(
-      "/sites/" + GRAPH_CONFIG.siteId +
-      "/lists/" + GRAPH_CONFIG.evalListId +
-      "/items?$expand=fields($select=IdeaID,EvaluatorEmail,Classification,SubmittedAt)&$top=500"
-    );
-    evalLog = resp.value.map(function(item) {
-      var f = item.fields;
-      return {
-        idea_id:         String(f.IdeaID || ""),
-        evaluator_email: String(f.EvaluatorEmail || "").toLowerCase(),
-        classification:  String(f.Classification || ""),
-        submitted_at:    String(f.SubmittedAt || "")
-      };
-    });
-  } catch(e) {
-    console.warn("Could not load eval log:", e.message);
-    evalLog = [];
-  }
+  evalLog = []; // CSV mode — no server state
 }
 
 // ── Dropdown — hide pre-qualified & discarded, show to-mature after 4w ──
@@ -778,32 +684,29 @@ async function submitForm() {
   };
 
   try {
-    // Write row to SharePoint List via Graph API (no Premium license needed)
-    await graphPost(
-      "/sites/" + GRAPH_CONFIG.siteId +
-      "/lists/" + GRAPH_CONFIG.evalListId + "/items",
-      { fields: {
-        IdeaID:           payload.idea_id,
-        Evaluator:        payload.evaluator,
-        EvaluatorEmail:   payload.evaluator_email,
-        EvalDate:         payload.eval_date,
-        Category:         payload.category,
-        StrategicGoal:    payload.strategic_goal,
-        WPSPriority:      payload.wps_priority,
-        Score_Value:      payload.score_value,
-        Score_Alignment:  payload.score_alignment,
-        Score_Feasibility:payload.score_feasibility,
-        Score_Innovation: payload.score_innovation,
-        Score_Problem:    payload.score_problem,
-        Score_Global:     payload.score_global,
-        BaseScore:        payload.base_score,
-        RiskDeduction:    payload.risk_deduction,
-        FinalScore:       payload.final_score,
-        Classification:   payload.classification,
-        Risks:            payload.risks,
-        SubmittedAt:      payload.submitted_at
-      }}
-    );
+    // Download CSV with evaluation data
+    var headers = ["IdeaID","Evaluator","EvaluatorEmail","EvalDate","Category",
+      "StrategicGoal","WPSPriority","Score_Value","Score_Alignment","Score_Feasibility",
+      "Score_Innovation","Score_Problem","Score_Global","BaseScore","RiskDeduction",
+      "FinalScore","Classification","Risks","SubmittedAt"];
+    var values = [payload.idea_id, payload.evaluator, payload.evaluator_email,
+      payload.eval_date, payload.category, payload.strategic_goal, payload.wps_priority,
+      payload.score_value, payload.score_alignment, payload.score_feasibility,
+      payload.score_innovation, payload.score_problem, payload.score_global,
+      payload.base_score, payload.risk_deduction, payload.final_score,
+      payload.classification, payload.risks, payload.submitted_at];
+    var csvContent = headers.join(",") + "\n" +
+      values.map(function(v){ return "\"" + String(v).replace(/"/g,'\'\'"') + "\""; }).join(",");
+    var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "eval_" + payload.idea_id + "_" + payload.evaluator_email.split("@")[0] + "_" + new Date().toISOString().slice(0,10) + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    await new Promise(function(res){ setTimeout(res, 400); });
 
     // Show outcome-specific success screen
     document.getElementById("card-4").classList.remove("active");
