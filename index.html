@@ -221,7 +221,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
           <div class="grid-2">
             <div class="field">
               <label>Idea ID <span class="req">*</span></label>
-              <div class="hint">Enter the numeric ID from AZWorks / Allianz Works &ndash; Idea Portal</div>
+              <div class="hint">Enter the numeric ID from <a href="https://allianzms.sharepoint.com/:l:/r/teams/DE1214-8737844/Lists/Allianz%20Works%20%20Idea%20Portal?e=eawpfX" target="_blank" style="color:var(--az-lblue)">AZWorks Idea Portal &#8599;</a></div>
               <input type="text" id="idea-id" placeholder="e.g. 42" style="letter-spacing:0.03em">
               <div class="field-error" id="err-idea">Please enter the Idea ID</div>
             </div>
@@ -265,9 +265,10 @@ input.invalid,select.invalid{border-color:#c0392b!important}
               <label>Allianz Strategic Goal <span class="req">*</span></label>
               <select id="strategic-goal">
                 <option value="">Select&hellip;</option>
-                <option>Delivering Smart Growth</option>
-                <option>Reinforcing Productivity</option>
-                <option>Strengthening Resilience</option>
+                <option value="Customer Satisfaction">Customer Satisfaction — Value through improved customer experiences</option>
+                <option value="Efficiency & Agility">Efficiency &amp; Agility — Nimble, flexible and fast to adapt</option>
+                <option value="Technology Innovation">Technology Innovation — Emerging tech for breakthrough solutions</option>
+                <option value="Cooperative Ecosystem">Cooperative Ecosystem — Unified supplier innovation framework</option>
               </select>
               <div class="field-error" id="err-goal">Please select a strategic goal</div>
             </div>
@@ -275,10 +276,10 @@ input.invalid,select.invalid{border-color:#c0392b!important}
               <label>WPS 2026 Priority</label>
               <select id="wps-priority">
                 <option value="">Select&hellip;</option>
-                <option>Customer centricity</option>
-                <option>Digital &amp; data</option>
-                <option>Operational excellence</option>
-                <option>People &amp; culture</option>
+                <option value="AI-Support Enablement">AI-Support Enablement — AI-powered insights to reduce resolution time</option>
+                <option value="Self-Service Enablement">Self-Service Enablement — Intuitive tools freeing up support capacity</option>
+                <option value="Predictive Intelligence">Predictive Intelligence — Anticipate issues before they impact users</option>
+                <option value="Intelligent Automation">Intelligent Automation — End-to-end automation reducing manual effort</option>
               </select>
             </div>
           </div>
@@ -326,31 +327,46 @@ input.invalid,select.invalid{border-color:#c0392b!important}
           <div class="flag-list" id="risk-list">
             <div class="flag-item" onclick="toggleRisk(this)">
               <div class="flag-check"></div>
-              <div class="flag-text">High estimated cost</div>
+              <div style="flex:1">
+                <div class="flag-text">High estimated cost</div>
+                <div style="font-size:11px;color:#999;margin-top:3px">&#128269; Ask: <em>What is the estimated budget? Are there hidden infrastructure or licensing costs?</em></div>
+              </div>
               <div class="flag-deduct">&minus;3 pts</div>
               <input type="checkbox" name="risk" value="High cost" style="display:none">
             </div>
             <div class="flag-item" onclick="toggleRisk(this)">
               <div class="flag-check"></div>
-              <div class="flag-text">Regulatory / compliance risk</div>
+              <div style="flex:1">
+                <div class="flag-text">Regulatory / compliance risk</div>
+                <div style="font-size:11px;color:#999;margin-top:3px">&#128269; Ask: <em>Does this touch regulated data or processes? Has Legal/Compliance been consulted?</em></div>
+              </div>
               <div class="flag-deduct">&minus;3 pts</div>
               <input type="checkbox" name="risk" value="Compliance risk" style="display:none">
             </div>
             <div class="flag-item" onclick="toggleRisk(this)">
               <div class="flag-check"></div>
-              <div class="flag-text">Technical third-party dependency</div>
+              <div style="flex:1">
+                <div class="flag-text">Technical third-party dependency</div>
+                <div style="font-size:11px;color:#999;margin-top:3px">&#128269; Ask: <em>Does this rely on an external vendor or API? What is the SLA and exit strategy?</em></div>
+              </div>
               <div class="flag-deduct">&minus;3 pts</div>
               <input type="checkbox" name="risk" value="Tech dependency" style="display:none">
             </div>
             <div class="flag-item" onclick="toggleRisk(this)">
               <div class="flag-check"></div>
-              <div class="flag-text">Data privacy impact assessment needed</div>
+              <div style="flex:1">
+                <div class="flag-text">Data privacy impact assessment needed</div>
+                <div style="font-size:11px;color:#999;margin-top:3px">&#128269; Ask: <em>Does it process personal data? Has a DPIA been initiated?</em></div>
+              </div>
               <div class="flag-deduct">&minus;3 pts</div>
               <input type="checkbox" name="risk" value="Data privacy" style="display:none">
             </div>
             <div class="flag-item" onclick="toggleRisk(this)">
               <div class="flag-check"></div>
-              <div class="flag-text">Change management / retraining required</div>
+              <div style="flex:1">
+                <div class="flag-text">Change management / retraining required</div>
+                <div style="font-size:11px;color:#999;margin-top:3px">&#128269; Ask: <em>How many people are affected? Is there a training plan and change champion identified?</em></div>
+              </div>
               <div class="flag-deduct">&minus;3 pts</div>
               <input type="checkbox" name="risk" value="Change management" style="display:none">
             </div>
@@ -373,6 +389,10 @@ input.invalid,select.invalid{border-color:#c0392b!important}
             <span id="deduct-msg"></span>
           </div>
 
+          <div class="field" style="margin-top:18px">
+            <label style="font-size:12px;font-weight:600;color:var(--az-dblue)">Overall evaluation comment</label>
+            <textarea id="overall-comment" rows="3" placeholder="Add your overall assessment, key observations or recommendations for this idea..." style="width:100%;padding:9px 13px;border:1.5px solid var(--az-lgray);border-radius:7px;font-family:inherit;font-size:13px;color:var(--az-gray);background:#fafbfd;outline:none;resize:vertical;transition:border-color .15s" onfocus="this.style.borderColor='var(--az-dark)'" onblur="this.style.borderColor='var(--az-lgray)'"></textarea>
+          </div>
           <div class="info-box" style="margin-top:14px">
             &#128308; <strong>Discarded</strong> (&lt;50): idea is closed, no re-evaluation.<br>
             &#128992; <strong>To mature</strong> (50&ndash;74): idea returns for re-evaluation in 4 weeks.<br>
@@ -520,12 +540,12 @@ function populateDropdown() {
 
 // ── Criteria ──────────────────────────────────────────────────────
 var CRITERIA = [
-  { id:"c1", label:"Clear and measurable value",   hint:"Concrete, quantifiable outcomes defined",        weight:25 },
-  { id:"c2", label:"Strategic alignment",           hint:"Aligns with Allianz goals and WPS 2026 drivers", weight:25 },
-  { id:"c3", label:"Technical & org. feasibility", hint:"Resources, technology and org readiness",        weight:20 },
-  { id:"c4", label:"Innovation level (not BAU)",    hint:"Novel approach, not routine operations",         weight:15 },
-  { id:"c5", label:"Clear problem statement",       hint:"Defined objective and use case documented",      weight:10 },
-  { id:"c6", label:"Global / multi-OE potential",  hint:"Scalable beyond local implementation",           weight:5  }
+  { id:"c1", label:"Clear and measurable value",   hint:"Concrete, quantifiable outcomes defined",                    weight:25 },
+  { id:"c2", label:"Strategic alignment",           hint:"Aligns with myIT Strategic Goals and WPS 2026 priorities",  weight:25 },
+  { id:"c3", label:"Technical & org. feasibility", hint:"Resources, technology and organisational readiness",         weight:20 },
+  { id:"c4", label:"Innovation level (not BAU)",    hint:"Novel approach, not routine operations",                    weight:15 },
+  { id:"c5", label:"Clear problem statement",       hint:"Defined objective and use case documented",                 weight:10 },
+  { id:"c6", label:"Global / multi-OE potential",  hint:"Scalable beyond local implementation",                      weight:5  }
 ];
 
 function buildCriteria() {
@@ -538,6 +558,11 @@ function buildCriteria() {
       stars += "<button type='button' class='star-btn' data-id='" + c.id + "' data-val='" + n + "'>" + n + "</button>";
     }
     div.innerHTML = "<div><div class='crit-label'>" + c.label + "</div><div class='crit-hint'>" + c.hint + "</div><div class='crit-weight'>Weight " + c.weight + "%</div></div><div class='star-group'>" + stars + "</div>";
+    var commentDiv = document.createElement("div");
+    commentDiv.style.cssText = "grid-column:1/-1;margin-top:6px";
+    commentDiv.innerHTML = "<input type='text' id='comment-" + c.id + "' placeholder='Add a comment for this criterion (optional)...' style='font-size:12px;color:#666;border-color:#e8edf4'>";
+    div.style.cssText = "display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center;gap:12px;border:1.5px solid #e8edf4;border-radius:8px;padding:12px 14px;background:#fafbfd;transition:border-color .15s";
+    div.appendChild(commentDiv);
     list.appendChild(div);
   });
   document.getElementById("criteria-list").addEventListener("click", function(e) {
@@ -661,6 +686,13 @@ async function submitForm() {
   var risks   = Array.from(document.querySelectorAll("[name='risk']:checked")).map(function(c){ return c.value; }).join("; ") || "None";
   var now     = new Date().toISOString();
 
+  var comments = {};
+  ["c1","c2","c3","c4","c5","c6"].forEach(function(id) {
+    var el = document.getElementById("comment-" + id);
+    comments[id] = el ? el.value.trim() : "";
+  });
+  var overallComment = document.getElementById("overall-comment") ? document.getElementById("overall-comment").value.trim() : "";
+
   var payload = {
     idea_id:          document.getElementById("idea-id").value.trim(),
     evaluator:        currentUser.info.label,
@@ -685,13 +717,17 @@ async function submitForm() {
     var headers = ["IdeaID","Evaluator","EvaluatorEmail","EvalDate","Category",
       "StrategicGoal","WPSPriority","Score_Value","Score_Alignment","Score_Feasibility",
       "Score_Innovation","Score_Problem","Score_Global","BaseScore","RiskDeduction",
-      "FinalScore","Classification","Risks","SubmittedAt"];
+      "FinalScore","Classification","Risks","Comment_Value","Comment_Alignment",
+      "Comment_Feasibility","Comment_Innovation","Comment_Problem","Comment_Global",
+      "OverallComment","SubmittedAt"];
     var values = [payload.idea_id, payload.evaluator, payload.evaluator_email,
       payload.eval_date, payload.category, payload.strategic_goal, payload.wps_priority,
       payload.score_value, payload.score_alignment, payload.score_feasibility,
       payload.score_innovation, payload.score_problem, payload.score_global,
       payload.base_score, payload.risk_deduction, payload.final_score,
-      payload.classification, payload.risks, payload.submitted_at];
+      payload.classification, payload.risks,
+      comments.c1, comments.c2, comments.c3, comments.c4, comments.c5, comments.c6,
+      overallComment, payload.submitted_at];
     var csvContent = headers.join(",") + "\n" +
       values.map(function(v){ return "\"" + String(v).replace(/"/g,'\'\'"') + "\""; }).join(",");
     var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
