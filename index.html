@@ -235,16 +235,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
               <label>Evaluator</label>
               <input type="text" id="evaluator" readonly style="background:#f4f6fa;cursor:not-allowed">
             </div>
-            <div class="field">
-              <label>Initiative category <span class="req">*</span></label>
-              <select id="category">
-                <option value="">Select&hellip;</option>
-                <option>Innovative idea</option>
-                <option>Process improvement</option>
-                <option>Quick win</option>
-              </select>
-              <div class="field-error" id="err-category">Please select a category</div>
-            </div>
+
           </div>
           <div class="nav-bar">
             <div class="status-note" style="color:#bbb;font-size:11px">&#128196; Evaluation will be downloaded as CSV</div>
@@ -668,7 +659,7 @@ function validateStep(step) {
   }
   if (step === 1) {
     check("idea-id",  "err-idea",     function(el){ return !!el.value.trim(); });
-    check("category", "err-category", function(el){ return !!el.value; });
+
   }
   if (step === 2) check("strategic-goal","err-goal",function(el){ return !!el.value; });
   return ok;
@@ -698,7 +689,7 @@ async function submitForm() {
     evaluator:        currentUser.info.label,
     evaluator_email:  currentUser.email,
     eval_date:        document.getElementById("eval-date").value,
-    category:         document.getElementById("category").value,
+    category:         "",
     strategic_goal:   document.getElementById("strategic-goal").value,
     wps_priority:     document.getElementById("wps-priority").value || "--",
     score_value:      scores["c1"]||0, score_alignment:   scores["c2"]||0,
