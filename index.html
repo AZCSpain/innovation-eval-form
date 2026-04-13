@@ -160,6 +160,68 @@ input.invalid,select.invalid{border-color:#c0392b!important}
 .toast{position:fixed;bottom:24px;right:24px;background:var(--az-dark);color:white;padding:11px 18px;border-radius:8px;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,0.2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:999;max-width:300px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.error{background:#c0392b}
+/* Custom dropdown styles */
+.custom-select-wrapper { position: relative; }
+.custom-select {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+.custom-select-trigger {
+  width: 100%;
+  padding: 9px 34px 9px 13px;
+  border: 1.5px solid var(--az-lgray);
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--az-gray);
+  background: #fafbfd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23003781' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 13px center;
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  transition: border-color .15s;
+  user-select: none;
+}
+.custom-select-trigger:hover, .custom-select.open .custom-select-trigger {
+  border-color: var(--az-dark);
+  box-shadow: 0 0 0 3px rgba(0,55,129,0.09);
+  background-color: white;
+}
+.custom-select-trigger .placeholder { color: #aaa; }
+.custom-select-trigger strong { color: var(--az-dark); font-weight: 700; }
+.custom-select-trigger span { color: #888; font-size: 12px; margin-left: 4px; }
+.custom-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: white;
+  border: 1.5px solid var(--az-lgray);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,55,129,0.13);
+  z-index: 100;
+  display: none;
+  overflow: hidden;
+}
+.custom-select.open .custom-options { display: block; }
+.custom-option {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f4f9;
+  transition: background .1s;
+}
+.custom-option:last-child { border-bottom: none; }
+.custom-option:hover { background: var(--az-bgblue); }
+.custom-option.selected { background: var(--az-bgblue); }
+.custom-option strong { display: block; font-size: 13px; color: var(--az-dark); font-weight: 700; }
+.custom-option span { display: block; font-size: 11px; color: #888; margin-top: 2px; }
+.select-hint { font-size: 11px; color: var(--az-lblue); margin-top: 4px; font-style: italic; }
+
+select#strategic-goal option, select#wps-priority option {
+  font-size: 13px;
+  padding: 6px;
+}
+.select-wrapper { position: relative; }
+.select-hint { font-size: 11px; color: var(--az-lblue); margin-top: 4px; font-style: italic; }
 
 /* Info box */
 .info-box{padding:10px 14px;border-radius:7px;font-size:12px;color:#7d5a00;background:#fffbea;border:1px solid #f0d060;line-height:1.5;margin-top:12px}
@@ -254,24 +316,38 @@ input.invalid,select.invalid{border-color:#c0392b!important}
           <div class="grid-2">
             <div class="field">
               <label>Allianz Strategic Goal <span class="req">*</span></label>
-              <select id="strategic-goal">
+              <select id="strategic-goal" onchange="updateSelectHint('strategic-goal','hint-goal')">
                 <option value="">Select&hellip;</option>
-                <option value="Customer Satisfaction">Customer Satisfaction — Value through improved customer experiences</option>
+                <option value="Customer Satisfaction">⬤ Customer Satisfaction — Value through improved customer experiences</option>
                 <option value="Efficiency & Agility">Efficiency &amp; Agility — Nimble, flexible and fast to adapt</option>
                 <option value="Technology Innovation">Technology Innovation — Emerging tech for breakthrough solutions</option>
                 <option value="Cooperative Ecosystem">Cooperative Ecosystem — Unified supplier innovation framework</option>
               </select>
+              <div id="hint-goal" class="select-hint"></div>
               <div class="field-error" id="err-goal">Please select a strategic goal</div>
             </div>
             <div class="field">
-              <label>WPS 2026 Priority</label>
-              <select id="wps-priority">
-                <option value="">Select&hellip;</option>
-                <option value="AI-Support Enablement">AI-Support Enablement — AI-powered insights to reduce resolution time</option>
-                <option value="Self-Service Enablement">Self-Service Enablement — Intuitive tools freeing up support capacity</option>
-                <option value="Predictive Intelligence">Predictive Intelligence — Anticipate issues before they impact users</option>
-                <option value="Intelligent Automation">Intelligent Automation — End-to-end automation reducing manual effort</option>
-              </select>
+              <label>Initiative Alignment</label>
+              <input type="hidden" id="wps-priority" value="">
+              <div class="custom-select" id="cs-wps">
+                <div class="custom-select-trigger" onclick="toggleCustomSelect('cs-wps')">
+                  <span class="placeholder">Select&hellip;</span>
+                </div>
+                <div class="custom-options">
+                  <div class="custom-option" onclick="selectCustomOption('cs-wps','wps-priority','AI-Support Enablement','AI-powered insights to reduce resolution time')">
+                    <strong>AI-Support Enablement</strong><span>AI-powered insights to reduce resolution time</span>
+                  </div>
+                  <div class="custom-option" onclick="selectCustomOption('cs-wps','wps-priority','Self-Service Enablement','Intuitive tools freeing up support capacity')">
+                    <strong>Self-Service Enablement</strong><span>Intuitive tools freeing up support capacity</span>
+                  </div>
+                  <div class="custom-option" onclick="selectCustomOption('cs-wps','wps-priority','Predictive Intelligence','Anticipate issues before they impact users')">
+                    <strong>Predictive Intelligence</strong><span>Anticipate issues before they impact users</span>
+                  </div>
+                  <div class="custom-option" onclick="selectCustomOption('cs-wps','wps-priority','Intelligent Automation','End-to-end automation reducing manual effort')">
+                    <strong>Intelligent Automation</strong><span>End-to-end automation reducing manual effort</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="nav-bar">
@@ -538,6 +614,49 @@ var CRITERIA = [
   { id:"c5", label:"Clear problem statement",       hint:"Defined objective and use case documented",                 weight:10 },
   { id:"c6", label:"Global / multi-OE potential",  hint:"Scalable beyond local implementation",                      weight:5  }
 ];
+
+function toggleCustomSelect(csId) {
+  var cs = document.getElementById(csId);
+  var isOpen = cs.classList.contains("open");
+  // Close all
+  document.querySelectorAll(".custom-select.open").forEach(function(el){ el.classList.remove("open"); });
+  if (!isOpen) cs.classList.add("open");
+}
+
+function selectCustomOption(csId, inputId, value, desc) {
+  var cs = document.getElementById(csId);
+  var input = document.getElementById(inputId);
+  input.value = value;
+  var trigger = cs.querySelector(".custom-select-trigger");
+  trigger.innerHTML = "<strong>" + value + "</strong><span style='margin-left:6px;color:#888;font-size:12px'>" + desc + "</span>";
+  cs.querySelectorAll(".custom-option").forEach(function(opt){
+    opt.classList.toggle("selected", opt.querySelector("strong").textContent === value);
+  });
+  cs.classList.remove("open");
+  // Clear validation error
+  cs.style.borderColor = "";
+}
+
+// Close dropdowns on outside click
+document.addEventListener("click", function(e) {
+  if (!e.target.closest(".custom-select")) {
+    document.querySelectorAll(".custom-select.open").forEach(function(el){ el.classList.remove("open"); });
+  }
+});
+
+function updateSelectHint(selectId, hintId) {
+  var sel = document.getElementById(selectId);
+  var hint = document.getElementById(hintId);
+  if (!hint) return;
+  var val = sel.value;
+  var opt = sel.querySelector("option[value='" + val.replace(/'/g, "\'") + "']");
+  if (opt && val) {
+    var parts = opt.textContent.split(" ∙ ");
+    hint.innerHTML = parts.length > 1 ? "<strong>" + parts[0] + "</strong> &mdash; " + parts.slice(1).join(" ∙ ") : "";
+  } else {
+    hint.innerHTML = "";
+  }
+}
 
 function buildCriteria() {
   var list = document.getElementById("criteria-list");
