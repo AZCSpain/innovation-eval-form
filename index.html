@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innovation &amp; Automation Evaluation â€” Allianz</title>
+<title>Innovation &amp; Automation Evaluation — Allianz</title>
 <style>
 :root{
   --az-dark:#003781;--az-dblue:#122B54;--az-lblue:#006192;
@@ -182,15 +182,15 @@ input.invalid,select.invalid{border-color:#c0392b!important}
 </head>
 <body>
 
-<!-- â”€â”€ SPINNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<!-- ── SPINNER ───────────────────────────────────────────────── -->
 <div class="spinner-overlay" id="spinner">
   <div class="spinner-box">
     <div class="spinner"></div>
-    <p id="spinner-msg">Submitting evaluationâ€¦</p>
+    <p id="spinner-msg">Submitting evaluation…</p>
   </div>
 </div>
 
-<!-- â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<!-- ── HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
   <div class="logo-text">Allianz &mdash; Innovation &amp; Automation Evaluation</div>
   <div class="user-chip" id="user-chip">
@@ -199,7 +199,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
   </div>
 </header>
 
-<!-- â”€â”€ PAGE SLIDER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<!-- ── PAGE SLIDER ───────────────────────────────────────────── -->
 <div class="page-slider" id="page-slider">
 
   <!-- PANEL 1: Entry -->
@@ -237,7 +237,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
 
     <div class="form-outer">
 
-      <!-- â”€â”€ STEP 1 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- ── STEP 1 ─────────────────────────────────────────── -->
       <div class="card active" id="card-1">
         <div class="card-header">
           <div class="card-icon">&#128282;</div>
@@ -249,9 +249,9 @@ input.invalid,select.invalid{border-color:#c0392b!important}
               <label>Idea <span class="req">*</span></label>
               <div class="hint">Loaded live from the <a href="https://allianzms.sharepoint.com/:l:/r/teams/DE1214-8737844/Lists/Allianz%20Works%20%20Idea%20Portal?e=eawpfX" target="_blank" style="color:var(--az-lblue)">AZWorks Idea Portal &#8599;</a></div>
               <select id="idea-sel" onchange="onIdeaSelect()">
-                <option value="">Loading ideasâ€¦</option>
+                <option value="">Loading ideas…</option>
               </select>
-              <div class="ideas-loading" id="ideas-loading">&#9679; Loading from SharePointâ€¦</div>
+              <div class="ideas-loading" id="ideas-loading">&#9679; Loading from SharePoint…</div>
               <div class="field-error" id="err-idea">Please select an idea</div>
             </div>
             <div class="field">
@@ -276,7 +276,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
         </div>
       </div>
 
-      <!-- â”€â”€ STEP 2 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- ── STEP 2 ─────────────────────────────────────────── -->
       <div class="card" id="card-2">
         <div class="card-header">
           <div class="card-icon">&#127919;</div>
@@ -288,21 +288,21 @@ input.invalid,select.invalid{border-color:#c0392b!important}
               <label>Allianz Strategic Goal <span class="req">*</span></label>
               <select id="strategic-goal">
                 <option value="">Select&hellip;</option>
-                <option value="Customer Satisfaction">Customer Satisfaction â€” Value through improved customer experiences</option>
-                <option value="Efficiency &amp; Agility">Efficiency &amp; Agility â€” Nimble, flexible and fast to adapt</option>
-                <option value="Technology Innovation">Technology Innovation â€” Emerging tech for breakthrough solutions</option>
-                <option value="Cooperative Ecosystem">Cooperative Ecosystem â€” Unified supplier innovation framework</option>
+                <option value="Customer Satisfaction">Customer Satisfaction — Value through improved customer experiences</option>
+                <option value="Efficiency &amp; Agility">Efficiency &amp; Agility — Nimble, flexible and fast to adapt</option>
+                <option value="Technology Innovation">Technology Innovation — Emerging tech for breakthrough solutions</option>
+                <option value="Cooperative Ecosystem">Cooperative Ecosystem — Unified supplier innovation framework</option>
               </select>
               <div class="field-error" id="err-goal">Please select a strategic goal</div>
             </div>
             <div class="field">
               <label>Initiative Alignment</label>
-              <select id="idea-alignment">
+              <select id="wps-priority">
                 <option value="">Select&hellip;</option>
-                <option value="AI-Support Enablement">AI-Support Enablement â€” AI-powered insights to reduce resolution time</option>
-                <option value="Self-Service Enablement">Self-Service Enablement â€” Intuitive tools freeing up support capacity</option>
-                <option value="Predictive Intelligence">Predictive Intelligence â€” Anticipate issues before they impact users</option>
-                <option value="Intelligent Automation">Intelligent Automation â€” End-to-end automation reducing manual effort</option>
+                <option value="AI-Support Enablement">AI-Support Enablement — AI-powered insights to reduce resolution time</option>
+                <option value="Self-Service Enablement">Self-Service Enablement — Intuitive tools freeing up support capacity</option>
+                <option value="Predictive Intelligence">Predictive Intelligence — Anticipate issues before they impact users</option>
+                <option value="Intelligent Automation">Intelligent Automation — End-to-end automation reducing manual effort</option>
               </select>
             </div>
           </div>
@@ -313,7 +313,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
         </div>
       </div>
 
-      <!-- â”€â”€ STEP 3 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- ── STEP 3 ─────────────────────────────────────────── -->
       <div class="card" id="card-3">
         <div class="card-header">
           <div class="card-icon">&#128202;</div>
@@ -339,7 +339,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
         </div>
       </div>
 
-      <!-- â”€â”€ STEP 4 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- ── STEP 4 ─────────────────────────────────────────── -->
       <div class="card" id="card-4">
         <div class="card-header">
           <div class="card-icon">&#9888;&#65039;</div>
@@ -406,7 +406,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
 
           <div class="field" style="margin-top:18px">
             <label>Overall evaluation comment</label>
-            <textarea id="overall-comment" rows="3" placeholder="Add your overall assessment, key observations or recommendations for this ideaâ€¦"></textarea>
+            <textarea id="overall-comment" rows="3" placeholder="Add your overall assessment, key observations or recommendations for this idea…"></textarea>
           </div>
 
           <div class="info-box">
@@ -422,7 +422,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
         </div>
       </div>
 
-      <!-- â”€â”€ SUCCESS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- ── SUCCESS ────────────────────────────────────────── -->
       <div class="success-screen" id="success-screen">
         <div class="success-icon" id="success-icon"></div>
         <div class="outcome-badge" id="outcome-badge"></div>
@@ -440,7 +440,7 @@ input.invalid,select.invalid{border-color:#c0392b!important}
 <div class="toast" id="toast"></div>
 
 <script>
-// â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CONFIG ────────────────────────────────────────────────────────
 // SharePoint site and list for submissions
 var SP_SITE_URL = "https://allianzms.sharepoint.com/teams/DE1214-11514502-myITServiceSolutionsSquad";
 var SP_LIST_NAME = "InnEvalLog"; // internal list name from URL
@@ -450,14 +450,14 @@ var IDEAS_SITE_URL = "https://allianzms.sharepoint.com/teams/DE1214-8737844";
 var IDEAS_LIST_ID = "e4c5cb66-fb24-4933-b8a2-560f71f05d0d";
 var IDEAS_LIST_TITLE = "Allianz Works  Idea Portal"; // exact list title for REST fallback
 
-// â”€â”€ AUTHORISED EVALUATORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── AUTHORISED EVALUATORS ─────────────────────────────────────────
 var ALLOWED_EMAILS = {
   "federico.calabrese@allianz.com": "Federico Calabrese",
   "ivonne.gonzalez@allianz.com":    "Ivonne Gonzalez",
   "rocio.osorio@allianz.de":        "Rocio Osorio"
 };
 
-// â”€â”€ CRITERIA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CRITERIA ──────────────────────────────────────────────────────
 var CRITERIA = [
   { id:"c1", label:"Clear and measurable value",    hint:"Concrete, quantifiable outcomes defined",                   weight:25 },
   { id:"c2", label:"Strategic alignment",            hint:"Aligns with myIT Strategic Goals and WPS 2026 priorities", weight:25 },
@@ -467,14 +467,14 @@ var CRITERIA = [
   { id:"c6", label:"Global / multi-OE potential",   hint:"Scalable beyond local implementation",                     weight:5  }
 ];
 
-// â”€â”€ STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── STATE ─────────────────────────────────────────────────────────
 var currentUser = null;
 var currentStep = 1;
 var scores = {};
 var riskCount = 0;
 var allIdeas = [];
 
-// â”€â”€ FALLBACK IDEAS (shown if SharePoint read fails) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── FALLBACK IDEAS (shown if SharePoint read fails) ───────────────
 var FALLBACK_IDEAS = [
   {id:"1",title:"AI-powered claims triage"},
   {id:"2",title:"Automated renewal reminders"},
@@ -486,14 +486,14 @@ var FALLBACK_IDEAS = [
   {id:"8",title:"Intelligent routing engine"}
 ];
 
-// â”€â”€ CLASSIFICATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CLASSIFICATION ────────────────────────────────────────────────
 function classify(score) {
   if (score >= 75) return { label:"Pre-qualified", cls:"green", note:"Idea advances to the next governance stage. No re-evaluation needed." };
   if (score >= 50) return { label:"To mature",     cls:"amber", note:"Idea returns for re-evaluation in 4 weeks." };
-  return              { label:"Discarded",      cls:"red",   note:"Idea does not meet the threshold. Closed â€” no re-evaluation." };
+  return              { label:"Discarded",      cls:"red",   note:"Idea does not meet the threshold. Closed — no re-evaluation." };
 }
 
-// â”€â”€ ENTRY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ENTRY ─────────────────────────────────────────────────────────
 function startEval() {
   var email = document.getElementById("entry-email").value.trim().toLowerCase();
   var input = document.getElementById("entry-email");
@@ -519,14 +519,14 @@ document.getElementById("entry-email").addEventListener("keydown", function(e) {
   if (e.key === "Enter") startEval();
 });
 
-// â”€â”€ LOAD IDEAS FROM SHAREPOINT (REST API â€” no auth token needed when opened from SP) â”€â”€
+// ── LOAD IDEAS FROM SHAREPOINT (REST API — no auth token needed when opened from SP) ──
 async function loadIdeas() {
   var sel = document.getElementById("idea-sel");
   var loading = document.getElementById("ideas-loading");
   loading.classList.add("show");
 
   try {
-    // SharePoint REST API â€” works automatically when the file is opened from SharePoint
+    // SharePoint REST API — works automatically when the file is opened from SharePoint
     // because the browser session carries the user's SharePoint cookie
     var url = IDEAS_SITE_URL + "/_api/lists/getbytitle('" +
       encodeURIComponent(IDEAS_LIST_TITLE) + "')/items?$select=Id,Title&$top=500&$orderby=Id asc";
@@ -552,7 +552,7 @@ async function loadIdeas() {
       throw new Error("Empty list");
     }
   } catch(e) {
-    console.warn("Could not load ideas from SharePoint:", e.message, "â€” using fallback list");
+    console.warn("Could not load ideas from SharePoint:", e.message, "— using fallback list");
     allIdeas = FALLBACK_IDEAS;
     populateIdeasDropdown(true);
     loading.classList.remove("show");
@@ -567,7 +567,7 @@ function populateIdeasDropdown(isFallback) {
     }).join("");
 
   if (isFallback) {
-    showToast("Ideas loaded from local list â€” open this file from SharePoint to load live ideas", false);
+    showToast("Ideas loaded from local list — open this file from SharePoint to load live ideas", false);
   }
 }
 
@@ -577,7 +577,7 @@ function onIdeaSelect() {
   document.getElementById("idea-title").value = idea ? idea.title : "";
 }
 
-// BUILD CRITERIA
+// ── BUILD CRITERIA ────────────────────────────────────────────────
 function buildCriteria() {
   var list = document.getElementById("criteria-list");
   list.innerHTML = "";
@@ -649,7 +649,7 @@ function updateFinalScore() {
   var dd   = document.getElementById("deduct-detail");
 
   if (base === 0) {
-    fsd.textContent = "â€“";
+    fsd.textContent = "–";
     fb.className = "score-badge badge-empty"; fb.textContent = "Not scored yet";
     dd.textContent = " "; return;
   }
@@ -658,19 +658,19 @@ function updateFinalScore() {
   var c = classify(final);
   fb.className = "score-badge badge-" + c.cls;
   fb.textContent = c.label;
-  dd.textContent = deduct > 0 ? base + " âˆ’ " + deduct + " pts risk deduction" : "No risk deductions";
+  dd.textContent = deduct > 0 ? base + " − " + deduct + " pts risk deduction" : "No risk deductions";
 }
 
-// â”€â”€ RISK FLAGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── RISK FLAGS ────────────────────────────────────────────────────
 function toggleRisk(el) {
   el.classList.toggle("flagged");
   var fck = el.querySelector(".flag-check");
-  if (fck) fck.textContent = el.classList.contains("flagged") ? "âœ“" : "";
+  if (fck) fck.textContent = el.classList.contains("flagged") ? "✓" : "";
   riskCount = document.querySelectorAll(".flag-item.flagged").length;
   updateFinalScore();
 }
 
-// â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── NAVIGATION ───────────────────────────────────────────────────
 function goTo(step) {
   if (step > currentStep && !validateStep(currentStep)) return;
   document.getElementById("card-" + currentStep).classList.remove("active");
@@ -698,7 +698,7 @@ function validateStep(step) {
   return ok;
 }
 
-// â”€â”€ GET SHAREPOINT REQUEST DIGEST (needed for REST POST) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── GET SHAREPOINT REQUEST DIGEST (needed for REST POST) ──────────
 async function getRequestDigest() {
   var resp = await fetch(SP_SITE_URL + "/_api/contextinfo", {
     method: "POST",
@@ -710,7 +710,7 @@ async function getRequestDigest() {
   return data.FormDigestValue;
 }
 
-// â”€â”€ SUBMIT TO SHAREPOINT LIST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SUBMIT TO SHAREPOINT LIST ─────────────────────────────────────
 async function submitToSharePoint(payload) {
   var digest = await getRequestDigest();
 
@@ -722,7 +722,7 @@ async function submitToSharePoint(payload) {
     "EvaluatorEmail":   payload.evaluator_email,
     "EvalDate":         payload.eval_date,
     "StrategicGoal":    payload.strategic_goal,
-    "IdeaAlignment":      payload.idea_alignment,
+    "WPSPriority":      payload.wps_priority,
     "Score_Value":      payload.score_value,
     "Score_Alignment":  payload.score_alignment,
     "Score_Feasibility":payload.score_feasibility,
@@ -760,16 +760,16 @@ async function submitToSharePoint(payload) {
 
   if (!resp.ok) {
     var errText = await resp.text();
-    throw new Error("SharePoint POST failed: " + resp.status + " â€” " + errText.substring(0,200));
+    throw new Error("SharePoint POST failed: " + resp.status + " — " + errText.substring(0,200));
   }
   return await resp.json();
 }
 
-// â”€â”€ SUBMIT FORM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SUBMIT FORM ───────────────────────────────────────────────────
 async function submitForm() {
   var btn = document.getElementById("btn-submit");
   btn.disabled = true;
-  showSpinner("Saving evaluation to SharePointâ€¦");
+  showSpinner("Saving evaluation to SharePoint…");
 
   var base   = calcBase();
   var deduct = riskCount * 3;
@@ -797,7 +797,7 @@ async function submitForm() {
     evaluator_email:      currentUser.email,
     eval_date:            document.getElementById("eval-date").value,
     strategic_goal:       document.getElementById("strategic-goal").value,
-    idea_alignment:         document.getElementById("idea-alignment").value || "--",
+    wps_priority:         document.getElementById("wps-priority").value || "--",
     score_value:          scores["c1"] || 0,
     score_alignment:      scores["c2"] || 0,
     score_feasibility:    scores["c3"] || 0,
@@ -828,7 +828,7 @@ async function submitForm() {
     console.error("SharePoint submit failed:", e);
     // Fallback: download CSV so no data is lost
     downloadCSV(payload);
-    showToast("Could not reach SharePoint â€” CSV downloaded as backup. Open this file from SharePoint for automatic saving.", true);
+    showToast("Could not reach SharePoint — CSV downloaded as backup. Open this file from SharePoint for automatic saving.", true);
     // Still show success so evaluator knows data is captured
     showSuccessScreen(payload, cls, true);
   }
@@ -836,15 +836,15 @@ async function submitForm() {
   btn.disabled = false;
 }
 
-// â”€â”€ CSV FALLBACK (only used if SharePoint submit fails) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CSV FALLBACK (only used if SharePoint submit fails) ───────────
 function downloadCSV(p) {
   var headers = ["IdeaID","IdeaTitle","Evaluator","EvaluatorEmail","EvalDate","StrategicGoal",
-    "IdeaAlignment","Score_Value","Score_Alignment","Score_Feasibility","Score_Innovation",
+    "WPSPriority","Score_Value","Score_Alignment","Score_Feasibility","Score_Innovation",
     "Score_Problem","Score_Global","BaseScore","RiskDeduction","FinalScore","Classification",
     "Risks","Comment_Value","Comment_Alignment","Comment_Feasibility","Comment_Innovation",
     "Comment_Problem","Comment_Global","OverallComment","SubmittedAt"];
   var values = [p.idea_id,p.idea_title,p.evaluator,p.evaluator_email,p.eval_date,
-    p.strategic_goal,p.idea_alignment,p.score_value,p.score_alignment,p.score_feasibility,
+    p.strategic_goal,p.wps_priority,p.score_value,p.score_alignment,p.score_feasibility,
     p.score_innovation,p.score_problem,p.score_global,p.base_score,p.risk_deduction,
     p.final_score,p.classification,p.risks,p.comment_value,p.comment_alignment,
     p.comment_feasibility,p.comment_innovation,p.comment_problem,p.comment_global,
@@ -861,7 +861,7 @@ function downloadCSV(p) {
   URL.revokeObjectURL(url);
 }
 
-// â”€â”€ SUCCESS SCREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SUCCESS SCREEN ────────────────────────────────────────────────
 function showSuccessScreen(payload, cls, csvFallback) {
   document.getElementById("card-4").classList.remove("active");
   var ss = document.getElementById("success-screen");
@@ -875,13 +875,13 @@ function showSuccessScreen(payload, cls, csvFallback) {
   var sumEl   = document.getElementById("success-summary");
 
   iconEl.className = "success-icon icon-" + cls.cls;
-  iconEl.textContent = cls.cls === "green" ? "âœ“" : cls.cls === "amber" ? "â³" : "âœ•";
+  iconEl.textContent = cls.cls === "green" ? "✓" : cls.cls === "amber" ? "⏳" : "✕";
   badgeEl.className = "outcome-badge outcome-" + cls.cls;
   badgeEl.textContent = cls.label;
   noteEl.textContent = cls.note;
   titleEl.textContent = cls.cls === "green" ? "Pre-qualified!" : cls.cls === "amber" ? "To mature" : "Discarded";
   subEl.textContent = csvFallback
-    ? "Saved locally as CSV â€” upload to SharePoint when connected."
+    ? "Saved locally as CSV — upload to SharePoint when connected."
     : "Evaluation saved to SharePoint. Power BI will reflect this shortly.";
 
   sumEl.className = "success-summary summary-" + cls.cls;
@@ -899,7 +899,7 @@ function showSuccessScreen(payload, cls, csvFallback) {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── RESET ─────────────────────────────────────────────────────────
 function resetForm() {
   document.getElementById("success-screen").classList.remove("show");
   document.getElementById("card-1").classList.add("active");
@@ -907,7 +907,7 @@ function resetForm() {
   document.getElementById("idea-sel").value = "";
   document.getElementById("idea-title").value = "";
   document.getElementById("strategic-goal").value = "";
-  document.getElementById("idea-alignment").value = "";
+  document.getElementById("wps-priority").value = "";
   document.getElementById("overall-comment").value = "";
   document.querySelectorAll(".star-btn").forEach(function(b){ b.classList.remove("active"); });
   document.querySelectorAll(".criterion").forEach(function(c){ c.classList.remove("scored"); });
@@ -919,7 +919,7 @@ function resetForm() {
   document.getElementById("score-fill").style.width = "0%";
   document.getElementById("score-badge").className = "score-badge badge-empty";
   document.getElementById("score-badge").textContent = "Not scored yet";
-  document.getElementById("final-score-display").textContent = "â€“";
+  document.getElementById("final-score-display").textContent = "–";
   document.getElementById("final-badge").className = "score-badge badge-empty";
   document.getElementById("final-badge").textContent = "Not scored yet";
   document.getElementById("deduct-detail").textContent = " ";
@@ -934,9 +934,9 @@ function resetForm() {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// â”€â”€ UI HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── UI HELPERS ────────────────────────────────────────────────────
 function showSpinner(msg) {
-  document.getElementById("spinner-msg").textContent = msg || "Please waitâ€¦";
+  document.getElementById("spinner-msg").textContent = msg || "Please wait…";
   document.getElementById("spinner").classList.add("show");
 }
 function hideSpinner() {
